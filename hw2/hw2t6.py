@@ -18,26 +18,45 @@
 # “ед”: [“шт.”]
 # }
 
+# cтруктуру формирую программно и запрашиваю все данные у пользователя.
+
 count_prod = int(input('How many products?\n'))
 all_prod = []
+#i = 1
+number_prod = 1
 
 while count_prod > 0:
+    count_spec = int(input('How many characteristics does the product number {0} have?\n'.format(number_prod)))
+    j = 0
     prod = {}
-    number_prod = int(input("Какой номер товара?\n"))
-    prod['название'] = input("Как называется товар ?\n")
-    prod['цена'] = input("Какая у него цена?\n")
-    prod['количество'] = input("Сколько товара?\n")
-    prod['единица'] = input("В каких он единицах?\n")
+    while j < count_spec:
+        prod_spec = input('Enter the product\'s characteristic and value separated by a space\n').split()
+        prod[prod_spec[0]] = prod_spec[1]
+        j = j + 1
     all_prod.append((number_prod, prod))
+    number_prod = number_prod + 1
     count_prod = count_prod - 1
 
-print(all_prod)
 
-analytics = input('Введите анализируемую велечину\n')
-
-all_analytics = []
+# получаю уникальные значения характеристик всех товаров, так как в задании не указано что они должны совпадать
+specifications = []
 
 for prod in all_prod:
-    all_analytics.append(prod[1].get(analytics))
+    specifications = specifications + list(prod[1].keys())
+
+specifications = (list(set(specifications)))
+
+
+# завожу всю полученные аналитику в словарь
+all_analytics = {}
+
+for spec in specifications:
+    spec_analytics = []
+    for prod in all_prod:
+        spec_analytics.append(prod[1].get(spec))
+    all_analytics[spec] = spec_analytics
 
 print(all_analytics)
+
+
+
