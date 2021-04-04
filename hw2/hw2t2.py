@@ -3,10 +3,10 @@
 # функцию input().
 
 tmp_list_2 = []
-n = int(input("Enter number of elements : "))
+n = int(input("Enter number of elements:\n"))
 
 for i in range(0, n):
-    ele = int(input('Введите число'))
+    ele = int(input('Введите число\n'))
     tmp_list_2.append(ele)
 
 new_list = []
@@ -27,4 +27,5 @@ while (i + 1 < len(tmp_list_2)):
 if (len(tmp_list_2) % 2 != 0):
     new_list.append(tmp_list_2[len(tmp_list_2) - 1])
 
-print(new_list)
+print('Old list ', tmp_list_2)
+print('New list ', new_list)
